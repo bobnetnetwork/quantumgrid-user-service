@@ -1,4 +1,4 @@
-package com.bobnet.network.quantumgrid.user_service;
+package network.bobnet.quantumgrid.user_service;
 
 import lombok.Generated;
 import org.springframework.boot.SpringApplication;

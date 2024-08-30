@@ -2,7 +2,7 @@ spring:
     application:
         name: User Service
     datasource:
-        url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/quantumgrid?currentSchema=usercervice}
+        url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5439/quantumgrid?currentSchema=userservice}
         username: ${JDBC_DATABASE_USERNAME:userservice}
         password: ${JDBC_DATABASE_PASSWORD:P4ssword!}
         hikari:
@@ -10,6 +10,7 @@ spring:
             idle-timeout: 30000
             connection-timeout: 8000
             validation-timeout: 30000
+        driver-class-name: org.postgresql.Driver
     JPA:
         Hibernate:
             ddl-auto: update
@@ -21,6 +22,7 @@ spring:
                         non_contextual_creation: true
                 id:
                     new_generator_mappings: true
+                dialect: org.hibernate.dialect.PostgreSQLDialect
     lifecycle:
         timeout-per-shutdown-phase: 30s
     main:
@@ -88,5 +90,5 @@ management:
 
 springdoc:
     show-actuator: false
-    use-management-port: false
+    use-management-port: true
     pathsToMatch: /api/**, /authenticate, /register
