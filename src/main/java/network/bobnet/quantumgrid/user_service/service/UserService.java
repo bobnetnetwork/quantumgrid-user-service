@@ -18,6 +18,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ProfileService profileService;
 
     public UserDTO registerUser(UserDTO userDTO) {
         if (userRepository.existsByUsername(userDTO.getUsername())) {
@@ -36,6 +37,8 @@ public class UserService {
                 .build();
 
         user = userRepository.save(user);
+
+        profileService.createProfile(user);
 
         return UserDTO.builder()
                 .id(user.getId())

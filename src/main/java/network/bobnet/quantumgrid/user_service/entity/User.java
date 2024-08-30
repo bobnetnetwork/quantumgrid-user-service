@@ -3,6 +3,7 @@ package network.bobnet.quantumgrid.user_service.entity;
 import lombok.*;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -17,7 +18,8 @@ import java.util.Objects;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     @ToString.Include
     private Long id;
 
@@ -52,6 +54,10 @@ public class User {
 
     @Column(name = "reset_token_expiry")
     private LocalDateTime resetTokenExpiry;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "id", referencedColumnName = "user_id")
+    private Profile profile;
 
     @PrePersist
     protected void onCreate() {

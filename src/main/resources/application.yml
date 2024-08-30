@@ -23,6 +23,7 @@ spring:
                 id:
                     new_generator_mappings: true
                 dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: false
     lifecycle:
         timeout-per-shutdown-phase: 30s
     main:
